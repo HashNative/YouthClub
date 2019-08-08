@@ -201,14 +201,8 @@
 </div>
 
 
-
-
 <script type="text/javascript">
-  $(document).ready(function() {
-    $("#groups").select2();
-
-    $("#userMainMenu").addClass('active');
-    $("#createUserSubNav").addClass('active');
-    
-  });
+    $(document).ready(function() {
+        $("#membersMainMenu").addClass('active');
+    });
 </script>

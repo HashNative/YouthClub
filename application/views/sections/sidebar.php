@@ -10,40 +10,40 @@
             </a>
         </li>
 
-        <li class="nav-item">
+        <li id="membersMainMenu" class="nav-item">
             <a class="nav-link" href="<?php echo base_url('members'); ?>">
                 <i class="fas fa-address-card"></i>
                 <span>Members</span></a>
         </li>
 
 
-        <li class="nav-item">
+        <li id="chitMainMenu" class="nav-item">
             <a class="nav-link" href="<?php echo base_url('chit'); ?>">
                 <i class="fas fa-receipt"></i>
                 <span>Chit</span></a>
         </li>
 
 
-        <li class="nav-item">
+        <li id="loanMainMenu" class="nav-item">
             <a class="nav-link" href="<?php echo base_url('loan'); ?>">
                 <i class="fas fa-hand-holding-usd"></i>
                 <span>Loan</span></a>
         </li>
 
-        <li class="nav-item">
+        <li id="paymentMainMenu" class="nav-item">
             <a class="nav-link" href="<?php echo base_url('payment'); ?>">
                 <i class="far fa-money-bill-alt"></i>
                 <span>Payment</span></a>
         </li>
 
 
-        <li class="nav-item">
+        <li id="incomeexpenseMainMenu" class="nav-item">
             <a class="nav-link" href="<?php echo base_url('incomeexpense'); ?>">
                 <i class="fas fa-money-check-alt"></i>
                 <span>Income & Expenses</span></a>
         </li>
 
-        <li class="nav-item">
+        <li id="umraMainMenu" class="nav-item">
             <a class="nav-link" href="<?php echo base_url('umra'); ?>">
                 <i class="fas fa-plane-departure"></i>
                 <span>Umra account</span></a>

@@ -40,13 +40,15 @@
                                     <select id="type" name="type" class="form-control">
                                         <option value="Income">Income</option>
                                         <option value="Expense">Expense</option>
+                                        <option value="Fine">Fine</option>
+
 
                                     </select>
                                 </div>
 
                                 <div class="form-group col-md-8">
                                     <label for="date">Description</label>
-                                    <input type="text" class="form-control" id="description" name="description" placeholder="Description" >
+                                    <input type="text" class="form-control" id="description" name="description" placeholder="Description/Fine-Ex: 10-Fine for monthly subscription" >
                                 </div>
 
                                 <div class="form-group col-md-2">
@@ -80,14 +82,8 @@
 </div>
 
 
-
-
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#groups").select2();
-
-        $("#userMainMenu").addClass('active');
-        $("#createUserSubNav").addClass('active');
-
+        $("#incomeexpenseMainMenu").addClass('active');
     });
 </script>

@@ -140,14 +140,8 @@
 </div>
 
 
-
-
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#groups").select2();
-
-        $("#userMainMenu").addClass('active');
-        $("#createUserSubNav").addClass('active');
-
+        $("#paymentMainMenu").addClass('active');
     });
 </script>

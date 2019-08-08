@@ -140,4 +140,12 @@
     </div>
 
 </div>
+
+
 <!-- /.content-wrapper -->
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#chitMainMenu").addClass('active');
+    });
+</script>

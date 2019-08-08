@@ -138,3 +138,9 @@
 
 </div>
 <!-- /.content-wrapper -->
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#incomeexpenseMainMenu").addClass('active');
+    });
+</script>

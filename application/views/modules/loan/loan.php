@@ -41,8 +41,8 @@
                                                 <thead>
                                                 <tr>
                                                     <th>Membership No</th>
-                                                    <th>Full Name</th>
-                                                    <th>Date</th>
+<!--                                                    <th>Full Name</th>-->
+                                                    <th>Date of Loan</th>
                                                     <th>Type</th>
                                                     <th>Amount</th>
                                                     <th>Present</th>
@@ -57,8 +57,8 @@
                                                 <tfoot>
                                                 <tr>
                                                     <th>Membership No</th>
-                                                    <th>Full Name</th>
-                                                    <th>Date</th>
+<!--                                                    <th>Full Name</th>-->
+                                                    <th>Date of Loan</th>
                                                     <th>Type</th>
                                                     <th>Amount</th>
                                                     <th>Present</th>
@@ -76,7 +76,7 @@
                                                 <?php foreach ($loan_data as $k => $v): ?>
                                                     <tr>
                                                         <td><?php echo $v['loan_info']['membership_no']; ?></td>
-                                                        <td><?php echo $v['loan_info']['full_name']; ?></td>
+<!--                                                        <td>--><?php //echo $v['loan_info']['full_name']; ?><!--</td>-->
                                                         <td><?php echo $v['loan_info']['date']; ?></td>
                                                         <td><?php echo $v['loan_info']['type']; ?></td>
                                                         <td><?php echo $v['loan_info']['amount']; ?></td>
@@ -181,3 +181,10 @@
 
 </div>
 <!-- /.content-wrapper -->
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#loanMainMenu").addClass('active');
+    });
+</script>

@@ -81,10 +81,6 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#groups").select2();
-
-        $("#userMainMenu").addClass('active');
-        $("#createUserSubNav").addClass('active');
-
+        $("#loanMainMenu").addClass('active');
     });
 </script>

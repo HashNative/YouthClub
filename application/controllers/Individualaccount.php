@@ -55,7 +55,7 @@ class Individualaccount extends Admin_Controller {
 
 
         $umra_due = $this->model_calculations->calculateDue($membership_no,'umra');
-        $fine_due = $this->model_calculations->calculateDue($membership_no,'fine');
+        $fine_due = $this->model_calculations->calculateFineDue($membership_no);
         $loan1_due = $this->model_calculations->calculateDueLoan($membership_no,'loan1');
         $present1_due = $this->model_calculations->calculateDueLoan($membership_no,'present1');
         $loan2_due = $this->model_calculations->calculateDueLoan($membership_no,'loan2');

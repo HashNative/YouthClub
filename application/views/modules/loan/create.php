@@ -176,7 +176,14 @@
 
 
 <script>
+
+    $(document).ready(function() {
+        $("#loanMainMenu").addClass('active');
+    });
+
     function addRow() {
+
+
 
         var x = document.getElementById("duration");
         var table = $("#devided_info_table");

@@ -41,8 +41,8 @@
                                                 <thead>
                                                 <tr>
                                                     <th>Membership No</th>
-                                                    <th>Full Name</th>
-                                                    <th>Date</th>
+<!--                                                    <th>Full Name</th>-->
+                                                    <th>Date of Payment</th>
                                                     <th>Subscription</th>
                                                     <th>Fine</th>
                                                     <th>Umra</th>
@@ -62,8 +62,8 @@
                                                 <tfoot>
                                                 <tr>
                                                     <th>Membership No</th>
-                                                    <th>Full Name</th>
-                                                    <th>Date</th>
+<!--                                                    <th>Full Name</th>-->
+                                                    <th>Date of Payment </th>
                                                     <th>Subscription</th>
                                                     <th>Fine</th>
                                                     <th>Umra</th>
@@ -84,7 +84,7 @@
                                                 <?php foreach ($payment_data as $k => $v): ?>
                                                     <tr>
                                                         <td><?php echo $v['payment_info']['membership_no']; ?></td>
-                                                        <td><?php echo $v['payment_info']['full_name']; ?></td>
+<!--                                                        <td>--><?php //echo $v['payment_info']['full_name']; ?><!--</td>-->
                                                         <td><?php echo $v['payment_info']['date']; ?></td>
                                                         <td><?php echo $v['payment_info']['subscription']; ?></td>
                                                         <td><?php echo $v['payment_info']['fine']; ?></td>
@@ -174,3 +174,9 @@
 
 </div>
 <!-- /.content-wrapper -->
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#paymentMainMenu").addClass('active');
+    });
+</script>

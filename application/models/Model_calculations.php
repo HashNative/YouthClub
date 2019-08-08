@@ -74,6 +74,38 @@ class Model_calculations extends CI_Model
 
     }
 
+    public function calculateFineDue($userId = null){
+
+        if($userId) {
+            //Get Opening
+            $sql = "SELECT fine AS subopening FROM members WHERE membership_no = ?";
+            $query = $this->db->query($sql, array($userId));
+            $opening = $query->row_array()['subopening'];
+
+
+            //Get Sub Paid
+            $sql1 = "SELECT SUM(fine) AS subpaid FROM payment WHERE membership_no = ?";
+            $result1 = $this->db->query($sql1, array($userId));
+
+
+            //Get Sub Applied Fine
+            $sql2 = "SELECT SUM(amount) AS appfine FROM incomeexpense WHERE SUBSTRING_INDEX(description, '-', 1) = ? AND type=?";
+            $result2 = $this->db->query($sql2, array($userId,'Fine'));
+
+
+
+//            Here should check whether this month paid
+
+
+            $totalsubdue= ($opening+$result2->row()->appfine) - $result1->row()->subpaid;
+
+            return $totalsubdue;
+
+        }
+
+
+
+    }
 
 
 

@@ -120,7 +120,7 @@
 
                         </div>
                         <!-- this row will not appear when printing -->
-                        <br>
+                        <br><br><br><br>
                         <div class="row no-print">
                             <div class="col-12">
                                 <a onclick="printDiv('due')" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
@@ -138,7 +138,7 @@
 
 <script language="javascript" type="text/javascript">
     $(document).ready(function () {
-
+        $("#membersMainMenu").addClass('active');
         var tds = document.getElementById('duetable').getElementsByTagName('td');
         var sum = 0;
         for (var i = 0; i < tds.length; i++) {
@@ -147,5 +147,9 @@
             }
         }
         document.getElementById('duetable').innerHTML += '<tr><td><strong>Total</strong></td><td align="right"><strong>' + sum + '</strong></td></tr>';
+
+
     });
 </script>
+
+
