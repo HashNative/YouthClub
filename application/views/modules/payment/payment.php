@@ -19,7 +19,6 @@
 
         <?php if($payment_data){ ?>
             <div class="row">
-                <div class="col-lg-12">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="ibox-title">
@@ -37,12 +36,12 @@
                                         Payment History</div>
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <table class="table table-bordered table-sm table-hover" id="dataTable" cellspacing="0">
                                                 <thead>
                                                 <tr>
                                                     <th>Membership No</th>
 <!--                                                    <th>Full Name</th>-->
-                                                    <th>Date of Payment</th>
+                                                    <th>Payment.Date</th>
                                                     <th>Subscription</th>
                                                     <th>Fine</th>
                                                     <th>Umra</th>
@@ -59,43 +58,23 @@
                                                     <th class="text-right" data-sort-ignore="true">Action</th>
                                                 </tr>
                                                 </thead>
-                                                <tfoot>
-                                                <tr>
-                                                    <th>Membership No</th>
-<!--                                                    <th>Full Name</th>-->
-                                                    <th>Date of Payment </th>
-                                                    <th>Subscription</th>
-                                                    <th>Fine</th>
-                                                    <th>Umra</th>
-                                                    <th>Chit</th>
-                                                    <th>Loan 1</th>
-                                                    <th>Present 1</th>
-                                                    <th>Loan 2</th>
-                                                    <th>Present 2</th>
-                                                    <th>Loan Donation</th>
-                                                    <th>Extra</th>
-                                                    <th>Method</th>
-                                                    <th>Cheque No</th>
 
-                                                    <th class="text-right" data-sort-ignore="true">Action</th>
-                                                </tr>
-                                                </tfoot>
                                                 <tbody>
                                                 <?php foreach ($payment_data as $k => $v): ?>
                                                     <tr>
                                                         <td><?php echo $v['payment_info']['membership_no']; ?></td>
 <!--                                                        <td>--><?php //echo $v['payment_info']['full_name']; ?><!--</td>-->
                                                         <td><?php echo $v['payment_info']['date']; ?></td>
-                                                        <td><?php echo $v['payment_info']['subscription']; ?></td>
-                                                        <td><?php echo $v['payment_info']['fine']; ?></td>
-                                                        <td><?php echo $v['payment_info']['umra']; ?></td>
-                                                        <td><?php echo $v['payment_info']['chit']; ?></td>
-                                                        <td><?php echo $v['payment_info']['loan1']; ?></td>
-                                                        <td><?php echo $v['payment_info']['present1']; ?></td>
-                                                        <td><?php echo $v['payment_info']['loan2']; ?></td>
-                                                        <td><?php echo $v['payment_info']['present2']; ?></td>
-                                                        <td><?php echo $v['payment_info']['loandonation']; ?></td>
-                                                        <td><?php echo $v['payment_info']['extra']; ?></td>
+                                                        <td align="right"><?php echo $v['payment_info']['subscription']; ?></td>
+                                                        <td align="right"><?php echo $v['payment_info']['fine']; ?></td>
+                                                        <td align="right"><?php echo $v['payment_info']['umra']; ?></td>
+                                                        <td align="right"><?php echo $v['payment_info']['chit']; ?></td>
+                                                        <td align="right"><?php echo $v['payment_info']['loan1']; ?></td>
+                                                        <td align="right"><?php echo $v['payment_info']['present1']; ?></td>
+                                                        <td align="right"><?php echo $v['payment_info']['loan2']; ?></td>
+                                                        <td align="right"><?php echo $v['payment_info']['present2']; ?></td>
+                                                        <td align="right"><?php echo $v['payment_info']['loandonation']; ?></td>
+                                                        <td align="right"><?php echo $v['payment_info']['extra']; ?></td>
                                                         <td><?php echo $v['payment_info']['method']; ?></td>
                                                         <td><?php echo $v['payment_info']['cheque_no']; ?></td>
 
@@ -115,9 +94,11 @@
                                                     <div class="modal inmodal" id="deleteModal<?php echo $v['payment_info']['id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">Do you really want to delete?</h4>
+                                                                </div>
                                                                 <form role="form" action="<?php echo base_url('payment/delete/'.$v['payment_info']['id']) ?>" method="post" id="issueForm">
                                                                     <div class="confirmation-modal-body">
-                                                                        <p><strong>Do you really want to delete?</strong></p>
                                                                         <div class="modal-footer d-flex justify-content-around">
                                                                             <button type="button" class="btn btn-white" data-dismiss="modal">No</button>
                                                                             <button type="submit" class="btn btn-primary" name="confirm" value="Confirm">Yes</button>
@@ -148,7 +129,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         <?php }else{ ?>
             <div class="row justify-content-center">

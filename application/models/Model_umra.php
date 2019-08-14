@@ -15,27 +15,46 @@ class Model_umra extends CI_Model
 			return $query->row_array();
 		}
 
-		$sql = "SELECT * FROM umra WHERE id != ? ORDER BY id DESC";
-		$query = $this->db->query($sql, array(1));
+		$sql = "SELECT * FROM umra ORDER BY id DESC";
+		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
 
-	public function getUserGroup($userId = null) 
-	{
-		if($userId) {
-			$sql = "SELECT * FROM user_group WHERE user_id = ?";
-			$query = $this->db->query($sql, array($userId));
-			$result = $query->row_array();
+    public function getUmraPaymentData($userId = null)
+    {
+        if($userId) {
+            $sql = "SELECT * FROM payment WHERE id = ?";
+            $query = $this->db->query($sql, array($userId));
+            return $query->row_array();
+        }
 
-			$group_id = $result['group_id'];
-			$g_sql = "SELECT * FROM groups WHERE id = ?";
-			$g_query = $this->db->query($g_sql, array($group_id));
-			$q_result = $g_query->row_array();
-			return $q_result;
-		}
-	}
+        $sql = "SELECT * FROM payment WHERE umra != ? ORDER BY id DESC";
+        $query = $this->db->query($sql, array(0));
+        return $query->result_array();
+    }
 
-	public function create($data = '')
+    public function getUmraAccount($userId = null)
+    {
+        if($userId) {
+            $sql = "SELECT * FROM payment WHERE id = ?";
+            $query = $this->db->query($sql, array($userId));
+            return $query->row_array();
+        }
+
+        //Join function with members-umraopening, payment-umra, umra-amount
+
+        $sql = "SELECT  m.membership_no AS membership_no, m.full_name AS full_name, m.umra_opening AS umra_opening
+      , (SELECT SUM(p.umra) FROM payment p WHERE p.membership_no = m.membership_no) as paidumra
+      , (SELECT SUM(u.amount) FROM umra u WHERE u.membership_no = m.membership_no) as umraloan
+        FROM members m ORDER BY m.membership_no ASC";
+
+
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+
+    public function create($data = '')
 	{
 
 		if($data) {

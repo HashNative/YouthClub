@@ -28,12 +28,17 @@
                 <i class="fas fa-bell fa-fw"></i>
                 <span class="badge badge-danger">9+</span>
             </a>
+            <form role="form" action="<?php echo base_url('incomeexpense/create'); ?>" method="POST">
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <input type="hidden" id="type" name="type" value="Fine">
+                <input type="hidden" id="date" name="date" value="<?php echo date("Y-m-d");?>">
+                <input type="hidden" id="description" name="description" value="Fine">
+                <input type="hidden" id="amount" name="amount" value="<?php echo $fine; ?>">
+<!--                <a class="dropdown-item" href="#">Fine amount of --><?php //echo $fine; ?><!-- for Member - 01 should be applied. <button type="submit" class="btn btn-warning">Apply</button> </a>-->
+<!--                <div class="dropdown-divider"></div>-->
+
             </div>
+            </form>
         </li>
 
         <li class="nav-item dropdown no-arrow">

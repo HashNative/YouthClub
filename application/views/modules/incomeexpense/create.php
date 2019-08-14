@@ -30,7 +30,7 @@
 
                     <div class="box">
 
-                        <form role="form" action="<?php base_url('incomeexpense/edit') ?>" method="post">
+                        <form role="form" action="<?php base_url('incomeexpense/create') ?>" method="post">
                             <?php echo validation_errors(); ?>
 
                             <div class="form-row">
@@ -41,6 +41,7 @@
                                         <option value="Income">Income</option>
                                         <option value="Expense">Expense</option>
                                         <option value="Fine">Fine</option>
+                                        <option value="Opening">Opening</option>
 
 
                                     </select>
@@ -87,3 +88,5 @@
         $("#incomeexpenseMainMenu").addClass('active');
     });
 </script>
+
+

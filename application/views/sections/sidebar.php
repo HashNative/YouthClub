@@ -4,7 +4,7 @@
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav" style="position: fixed; padding-top: 70px">
         <li class="nav-item active">
-            <a class="nav-link" href="<?php echo base_url('welcome'); ?>">
+            <a class="nav-link" href="<?php echo base_url('dashboard'); ?>">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span>
             </a>

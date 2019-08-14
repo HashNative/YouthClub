@@ -143,6 +143,16 @@
 
                                     </div>
 
+                                    <div class="form-row">
+
+                                        <div class="form-group col-md-2">
+                                            <label for="umraopening"><h5>Umra Opening balance</h5></label>
+                                            <input type="text" class="form-control" id="umraopening" name="umraopening" value="0">
+                                        </div>
+
+
+                                    </div>
+
 
                                 </div>
                             </div>

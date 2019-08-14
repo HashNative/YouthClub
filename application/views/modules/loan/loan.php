@@ -19,7 +19,6 @@
 
         <?php if($loan_data){ ?>
             <div class="row">
-                <div class="col-lg-12">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="ibox-title">
@@ -37,7 +36,7 @@
                                         Loan History</div>
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <table class="table table-bordered table-sm table-hover" id="dataTable" cellspacing="0">
                                                 <thead>
                                                 <tr>
                                                     <th>Membership No</th>
@@ -103,9 +102,11 @@
                                                     <div class="modal inmodal" id="deleteModal<?php echo $v['loan_info']['id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">Do you really want to delete?</h4>
+                                                                </div>
                                                                 <form role="form" action="<?php echo base_url('loan/delete/'.$v['loan_info']['id']) ?>" method="post" id="issueForm">
                                                                     <div class="confirmation-modal-body">
-                                                                        <p><strong>Do you really want to delete?</strong></p>
                                                                         <div class="modal-footer d-flex justify-content-around">
                                                                             <button type="button" class="btn btn-white" data-dismiss="modal">No</button>
                                                                             <button type="submit" class="btn btn-primary" name="confirm" value="Confirm">Yes</button>
@@ -125,7 +126,6 @@
                                                                     <h4 class="modal-title">Loan Divided details</h4>
                                                                 </div>
                                                                     <div class="confirmation-modal-body">
-
                                                                         <div class="modal-footer d-flex justify-content-around">
                                                                             <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
 
@@ -155,7 +155,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         <?php }else{ ?>
             <div class="row justify-content-center">

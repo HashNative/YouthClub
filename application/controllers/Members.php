@@ -82,6 +82,7 @@ class Members extends Admin_Controller {
                 'loan2' => $this->input->post('loan2'),
                 'present2' => $this->input->post('present2'),
                 'loandonation' => $this->input->post('loandonation'),
+                'umra_opening' => $this->input->post('umraopening'),
 
 
 
@@ -142,6 +143,7 @@ class Members extends Admin_Controller {
                     'loan2' => $this->input->post('loan2'),
                     'present2' => $this->input->post('present2'),
                     'loandonation' => $this->input->post('loandonation'),
+                    'umra_opening' => $this->input->post('umraopening'),
                     );
 
                 $update = $this->model_members->edit($data,$id);

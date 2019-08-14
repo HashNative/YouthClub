@@ -19,7 +19,6 @@
 
         <?php if($members_data){ ?>
             <div class="row">
-                <div class="col-lg-12">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="ibox-title">
@@ -36,8 +35,8 @@
                                         <i class="fas fa-table"></i>
                                         All Members</div>
                                     <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                                            <table class="table table-bordered table-sm table-hover" id="dataTable" cellspacing="0">
                                                 <thead>
                                                 <tr>
                                                     <th>Membership No</th>
@@ -71,7 +70,7 @@
                                                             <div class="btn-group">
                                                                 <a type="button" class="btn btn-outline-success btn-sm" href="<?php echo base_url('members/edit/'.$v['members_info']['id']) ?>">Edit</a>
                                                                 <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#deleteModal<?php echo $v['members_info']['id']; ?>">Delete</button>
-                                                                <a type="button" class="btn btn-warning btn-sm" href="<?php echo base_url('individualaccount/due/'.$v['members_info']['membership_no'].'/'.$v['members_info']['id']) ?>">View</a>
+                                                                <a type="button" class="btn btn-warning btn-sm" href="<?php echo base_url('individualaccount/due/'.$v['members_info']['membership_no'].'/'.$v['members_info']['id']) ?>">Report</a>
 
                                                             </div>
 
@@ -83,9 +82,11 @@
                                                     <div class="modal inmodal" id="deleteModal<?php echo $v['members_info']['id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">Do you really want to delete?</h4>
+                                                                </div>
                                                                 <form role="form" action="<?php echo base_url('members/delete/'.$v['members_info']['id']) ?>" method="post" id="issueForm">
                                                                     <div class="confirmation-modal-body">
-                                                                        <p><strong>Do you really want to delete?</strong></p>
                                                                         <div class="modal-footer d-flex justify-content-around">
                                                                             <button type="button" class="btn btn-white" data-dismiss="modal">No</button>
                                                                             <button type="submit" class="btn btn-primary" name="confirm" value="Confirm">Yes</button>
@@ -104,7 +105,7 @@
 
                                             </tbody>
                                             </table>
-                                        </div>
+
                                     </div>
                                     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                                 </div>
@@ -116,7 +117,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         <?php }else{ ?>
             <div class="row justify-content-center">

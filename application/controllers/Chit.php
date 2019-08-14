@@ -19,12 +19,17 @@ class Chit extends Admin_Controller {
 
         $result = array();
         foreach ($chit_data as $k => $v) {
-
             $result[$k]['chit_info'] = $v;
-
         }
-
         $this->data['chit_data'] = $result;
+
+        $chit_payment_data = $this->model_chit->getChitPaymentData();
+
+        $result1 = array();
+        foreach ($chit_payment_data as $k => $v) {
+            $result1[$k]['chit_payment_info'] = $v;
+        }
+        $this->data['chit_payment_data'] = $result1;
 
         $this->render_template('modules/chit/chit', $this->data);
 

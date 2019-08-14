@@ -15,10 +15,23 @@ class Model_chit extends CI_Model
 			return $query->row_array();
 		}
 
-		$sql = "SELECT * FROM chit WHERE id != ? ORDER BY id DESC";
-		$query = $this->db->query($sql, array(1));
+		$sql = "SELECT * FROM chit ORDER BY id DESC";
+		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
+
+    public function getChitPaymentData($userId = null)
+    {
+        if($userId) {
+            $sql = "SELECT * FROM payment WHERE id = ? AND chit>0";
+            $query = $this->db->query($sql, array($userId));
+            return $query->row_array();
+        }
+
+        $sql = "SELECT * FROM payment WHERE chit>0 ORDER BY id DESC";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
 
 
 	public function create($data = '')

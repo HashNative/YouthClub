@@ -23,8 +23,28 @@ class Umra extends Admin_Controller {
             $result[$k]['umra_info'] = $v;
 
         }
+        $umra_payment_data = $this->model_umra->getUmraPaymentData();
+
+        $result1 = array();
+        foreach ($umra_payment_data as $k => $v) {
+
+            $result1[$k]['umra_payment_info'] = $v;
+
+        }
+
+        $umra_account_data = $this->model_umra->getUmraAccount();
+
+        $result2 = array();
+        foreach ($umra_account_data as $k => $v) {
+
+            $result2[$k]['umra_account_info'] = $v;
+
+        }
+
 
         $this->data['umra_data'] = $result;
+        $this->data['umra_payment_data'] = $result1;
+        $this->data['umra_account_data'] = $result2;
 
         $this->render_template('modules/umra/umra', $this->data);
 
