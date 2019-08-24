@@ -28,8 +28,8 @@ class Model_umra extends CI_Model
             return $query->row_array();
         }
 
-        $sql = "SELECT * FROM payment WHERE umra != ? ORDER BY id DESC";
-        $query = $this->db->query($sql, array(0));
+        $sql = "SELECT * FROM payment ORDER BY id DESC";
+        $query = $this->db->query($sql);
         return $query->result_array();
     }
 

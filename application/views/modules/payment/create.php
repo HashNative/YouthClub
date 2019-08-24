@@ -53,27 +53,27 @@
 
                                 <div class="form- col-md-2">
                                     <label for="subscription">Subscription</label>
-                                    <input type="text" class="form-control" id="subscription" name="subscription" placeholder="Subscription" value="0">
+                                    <input type="text" class="form-control" id="subscription" name="subscription" placeholder="Subscription" value="0" onkeyup="calculateTotal(this)">
                                 </div>
                                 <div class="form- col-md-2">
                                     <label for="fine">Fine</label>
-                                    <input type="text" class="form-control" id="fine" name="fine" placeholder="Fine" value="0" >
+                                    <input type="text" class="form-control" id="fine" name="fine" placeholder="Fine" value="0"  onkeyup="calculateTotal(this)">
                                 </div>
                                 <div class="form- col-md-2">
                                     <label for="umra">Umra</label>
-                                    <input type="text" class="form-control" id="umra" name="umra" placeholder="Umra" value="0" >
+                                    <input type="text" class="form-control" id="umra" name="umra" placeholder="Umra" value="0"  onkeyup="calculateTotal(this)">
                                 </div>
                                 <div class="form- col-md-2">
                                     <label for="chit">Chit</label>
-                                    <input type="text" class="form-control" id="chit" name="chit" placeholder="Chit" value="0" >
+                                    <input type="text" class="form-control" id="chit" name="chit" placeholder="Chit" value="0" onkeyup="calculateTotal(this)" >
                                 </div>
                                 <div class="form- col-md-2">
-                                    <label for="loan1">Loan l</label>
-                                    <input type="text" class="form-control" id="loan1" name="loan1" placeholder="Loan 1" value="0" >
+                                    <label for="loan1">Loan 1</label>
+                                    <input type="text" class="form-control" id="loan1" name="loan1" placeholder="Loan 1" value="0" onkeyup="calculateTotal(this)">
                                 </div>
                                 <div class="form- col-md-2">
                                     <label for="present1">Present 1</label>
-                                    <input type="text" class="form-control" id="present1" name="present1" placeholder="Present1" value="0" >
+                                    <input type="text" class="form-control" id="present1" name="present1" placeholder="Present1" value="0" onkeyup="calculateTotal(this)">
                                 </div>
 
                 </div>
@@ -81,19 +81,28 @@
 
                                 <div class="form- col-md-2">
                                     <label for="loan2">Loan 2</label>
-                                    <input type="text" class="form-control" id="loan2" name="loan2" placeholder="Loan 2"  value="0">
+                                    <input type="text" class="form-control" id="loan2" name="loan2" placeholder="Loan 2"  value="0" onkeyup="calculateTotal(this)">
                                 </div>
                                 <div class="form- col-md-2">
                                     <label for="present2">Present 2</label>
-                                    <input type="text" class="form-control" id="present2" name="present2" placeholder="Present 2"  value="0">
+                                    <input type="text" class="form-control" id="present2" name="present2" placeholder="Present 2"  value="0" onkeyup="calculateTotal(this)">
                                 </div>
                                 <div class="form- col-md-2">
                                     <label for="loandonation">Loan Donation</label>
-                                    <input type="text" class="form-control" id="loandonation" name="loandonation" placeholder="Loan donation"  value="0">
+                                    <input type="text" class="form-control" id="loandonation" name="loandonation" placeholder="Loan donation"  value="0" onkeyup="calculateTotal(this)">
                                 </div>
                                 <div class="form- col-md-2">
                                     <label for="extra">Extra</label>
-                                    <input type="text" class="form-control" id="extra" name="extra" placeholder="Extra" value="0" >
+                                    <input type="text" class="form-control" id="extra" name="extra" placeholder="Extra" value="0" onkeyup="calculateTotal(this)">
+                                </div>
+
+                            </div>
+
+                            <div class="form-row">
+
+                                <div class="form- col-md-2">
+                                    <label for="total">Total</label>
+                                    <input type="text" class="form-control" id="total" name="total" placeholder="Total" value="0" >
                                 </div>
 
                             </div>
@@ -123,7 +132,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-success">Issue Loan</button>
+                            <button type="submit" class="btn btn-success">Save Payment</button>
                 </form>
 
 
@@ -140,8 +149,21 @@
 </div>
 
 
-<script type="text/javascript">
+<script>
+
     $(document).ready(function() {
         $("#paymentMainMenu").addClass('active');
     });
+    function calculateTotal(field) {
+        if(field.value) {
+            var totalamount = Number($("#subscription").val())+Number($("#fine").val())+Number($("#umra").val())+Number($("#chit").val())
+                +Number($("#loan1").val())+Number($("#loan2").val())+Number($("#loandonation").val())+Number($("#extra").val());
+            $("#total").val(totalamount);
+        }else{
+            field.value=0 ;
+            var totalamount = Number($("#subscription").val())+Number($("#fine").val())+Number($("#umra").val())+Number($("#chit").val())
+                +Number($("#loan1").val())+Number($("#loan2").val())+Number($("#loandonation").val())+Number($("#extra").val());
+            $("#total").val(totalamount);
+        }
+    }
 </script>

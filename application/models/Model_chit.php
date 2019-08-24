@@ -63,8 +63,8 @@ class Model_chit extends CI_Model
 
 	public function countTotalUsers()
 	{
-		$sql = "SELECT * FROM users WHERE id != ?";
-		$query = $this->db->query($sql, array(1));
+		$sql = "SELECT * FROM users";
+		$query = $this->db->query($sql);
 		return $query->num_rows();
 	}
 	

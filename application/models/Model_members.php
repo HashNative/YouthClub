@@ -15,7 +15,7 @@ class Model_members extends CI_Model
 			return $query->row_array();
 		}
 
-		$sql = "SELECT * FROM members ORDER BY id DESC";
+		$sql = "SELECT * FROM members ORDER BY membership_no ASC";
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}

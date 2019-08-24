@@ -44,6 +44,18 @@ class Loan extends Admin_Controller {
 
             $this->data['loan_data'] = $result;
 
+        $loan_divided_data = $this->model_loan->getDividedData();
+
+        $result1 = array();
+        foreach ($loan_divided_data as $k => $v) {
+
+            $result1[$k]['loan_divided_info'] = $v;
+
+        }
+
+        $this->data['loan_divided_data'] = $result1;
+
+
         $this->render_template('modules/loan/loan', $this->data);
 
 

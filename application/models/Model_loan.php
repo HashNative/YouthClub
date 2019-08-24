@@ -15,10 +15,23 @@ class Model_loan extends CI_Model
 			return $query->row_array();
 		}
 
-		$sql = "SELECT * FROM loan WHERE id != ? ORDER BY id DESC";
-		$query = $this->db->query($sql, array(1));
+		$sql = "SELECT * FROM loan ORDER BY id DESC";
+		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
+
+    public function getDividedData($userId = null)
+    {
+        if($userId) {
+            $sql = "SELECT * FROM dividedloan WHERE id = ?";
+            $query = $this->db->query($sql, array($userId));
+            return $query->row_array();
+        }
+
+        $sql = "SELECT * FROM dividedloan ORDER BY id DESC";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
 
 
 	public function create($data = '')
@@ -70,8 +83,8 @@ class Model_loan extends CI_Model
 
 	public function countTotalUsers()
 	{
-		$sql = "SELECT * FROM users WHERE id != ?";
-		$query = $this->db->query($sql, array(1));
+		$sql = "SELECT * FROM users";
+		$query = $this->db->query($sql);
 		return $query->num_rows();
 	}
 	

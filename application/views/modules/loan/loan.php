@@ -126,12 +126,28 @@
                                                                     <h4 class="modal-title">Loan Divided details</h4>
                                                                 </div>
                                                                     <div class="confirmation-modal-body">
+
+                                                                        <?php foreach ($loan_divided_data as $k1 => $v1):
+                                                                                if($v['loan_info']['id']==$v1['loan_divided_info']['loan_id']) {
+                                                                                    ?>
+                                                                                    <ul>
+                                                                                        <p>Payment
+                                                                                            Date: <?php echo $v1['loan_divided_info']['date_to_pay']; ?></p>
+                                                                                        <p>
+                                                                                            Amount: <?php echo $v1['loan_divided_info']['amount']; ?></p>
+                                                                                        <p>
+                                                                                            Present: <?php echo $v1['loan_divided_info']['present']; ?></p>
+                                                                                    </ul>
+                                                                                    <hr>
+                                                                                    <?php
+                                                                                }
+                                                                        endforeach; ?>
+
                                                                         <div class="modal-footer d-flex justify-content-around">
                                                                             <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
 
                                                                         </div>
                                                                     </div>
-
                                                             </div>
                                                         </div>
                                                     </div>

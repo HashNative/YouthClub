@@ -15,8 +15,8 @@ class Model_incomeexpense extends CI_Model
 			return $query->row_array();
 		}
 
-		$sql = "SELECT * FROM incomeexpense WHERE id != ? ORDER BY id DESC";
-		$query = $this->db->query($sql, array(1));
+		$sql = "SELECT * FROM incomeexpense ORDER BY id DESC";
+		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
 
@@ -50,7 +50,7 @@ class Model_incomeexpense extends CI_Model
 
 	public function countTotalUsers()
 	{
-		$sql = "SELECT * FROM users WHERE id != ?";
+		$sql = "SELECT * FROM users";
 		$query = $this->db->query($sql, array(1));
 		return $query->num_rows();
 	}

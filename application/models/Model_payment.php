@@ -15,8 +15,8 @@ class Model_payment extends CI_Model
 			return $query->row_array();
 		}
 
-		$sql = "SELECT * FROM payment WHERE id != ? ORDER BY id DESC";
-		$query = $this->db->query($sql, array(1));
+		$sql = "SELECT * FROM payment ORDER BY id DESC";
+		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
 

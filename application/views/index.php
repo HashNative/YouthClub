@@ -84,7 +84,7 @@
             <div class="card mb-3">
                 <div class="card-header">
                     <i class="fas fa-table"></i>
-                    Monthly Transaction - For this month (<?php echo date('M'); ?>)</div>
+                    Monthly Transaction - For this month (<?php echo date('M'); ?>/<?php echo date('Y'); ?>)</div>
                 <div class="card-body">
                     <div id="monthly_summary" class="table-responsive">
                         <table id="monthy_report_table" class="table table-bordered table-sm table-hover" id="dataTable" width="100%" cellspacing="0">

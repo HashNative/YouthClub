@@ -5,7 +5,7 @@
 
         <div class="row wrapper border-bottom white-bg">
             <div class="col-lg-4 navbar-right">
-                <a class="minimalize-styl-2 btn btn-primary " href="<?php echo base_url('chit') ?>"><i class="fa fa-eye"></i> All Members</a>
+                <a class="minimalize-styl-2 btn btn btn-outline-secondary " href="<?php echo base_url('payment') ?>"><i class="fa fa-eye"></i> Payment History</a>
             </div>
 
         </div>
@@ -30,37 +30,114 @@
 
                     <div class="box">
 
-                        <form role="form" action="<?php base_url('chit/edit') ?>" method="post">
+                        <form role="form" action="<?php echo base_url('payment/edit/'.$payment_data['id']); ?>" method="post">
                             <?php echo validation_errors(); ?>
 
                             <div class="form-row">
-                                <div class="form-group col-md-2">
-                                    <label for="inputEmail4">Membership No</label>
-                                    <input type="text" class="form-control" id="membership_no" name="membership_no" placeholder="Membership No" value="<?php echo $chit_data['membership_no'] ?>" autocomplete="off">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Full Name</label>
-                                    <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Full Name" value="<?php echo $chit_data['full_name'] ?>" autocomplete="off">
+
+                                <div class="form-group col-md-8">
+                                    <label for="membership_no">Membership No</label>
+                                    <select id="membership_no" name="membership_no" class="form-control">
+
+                                        <option value="<?php echo $payment_data['membership_no'].'-'.$payment_data['full_name']; ?>" selected="<?php echo $payment_data['membership_no'].'-'.$payment_data['full_name']; ?>">
+                                            <?php echo $payment_data['membership_no'].'-'.$payment_data['full_name']; ?>
+                                        </option>
+                                        <?php foreach ($members_data as $k => $v): ?>
+                                            <option value="<?php echo $v['membership_no'].'-'.$v['full_name']; ?>" >
+                                                <?php echo $v['membership_no'].'-'.$v['full_name']; ?>
+                                            </option>
+                                        <?php endforeach ?>
+                                    </select>
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label for="date">Date</label>
-                                    <input type="text" class="form-control" id="date" name="date" placeholder="Date" value="<?php echo $chit_data['date'] ?>" autocomplete="off">
+                                    <input type="date" class="form-control" id="date" name="date" value="<?php echo $payment_data['date']; ?>">
                                 </div>
                             </div>
                             <div class="form-row">
+
                                 <div class="form- col-md-2">
-                                    <label for="chit_no">Chit No</label>
-                                    <input type="text" class="form-control" id="chit_no" name="chit_no" placeholder="Chit Number" value="<?php echo $chit_data['chit_no'] ?>" autocomplete="off">
+                                    <label for="subscription">Subscription</label>
+                                    <input type="text" class="form-control" id="subscription" name="subscription" placeholder="Subscription" value="<?php echo $payment_data['subscription'] ?>" autocomplete="off"  onkeyup="calculateTotal(this)">
                                 </div>
-                                <div class="form- col-md-4">
-                                    <label for="amount">Amount</label>
-                                    <input type="text" class="form-control" id="amount" name="amount" placeholder="Amount" value="<?php echo $chit_data['amount'] ?>" autocomplete="off">
+                                <div class="form- col-md-2">
+                                    <label for="fine">Fine</label>
+                                    <input type="text" class="form-control" id="fine" name="fine" placeholder="Fine" value="<?php echo $payment_data['fine'] ?>" autocomplete="off"   onkeyup="calculateTotal(this)">
+                                </div>
+                                <div class="form- col-md-2">
+                                    <label for="umra">Umra</label>
+                                    <input type="text" class="form-control" id="umra" name="umra" placeholder="Umra" value="<?php echo $payment_data['umra'] ?>" autocomplete="off"   onkeyup="calculateTotal(this)">
+                                </div>
+                                <div class="form- col-md-2">
+                                    <label for="chit">Chit</label>
+                                    <input type="text" class="form-control" id="chit" name="chit" placeholder="Chit" value="<?php echo $payment_data['chit'] ?>" autocomplete="off"  onkeyup="calculateTotal(this)" >
+                                </div>
+                                <div class="form- col-md-2">
+                                    <label for="loan1">Loan l</label>
+                                    <input type="text" class="form-control" id="loan1" name="loan1" placeholder="Loan 1" value="<?php echo $payment_data['loan1'] ?>" autocomplete="off"  onkeyup="calculateTotal(this)" >
+                                </div>
+                                <div class="form- col-md-2">
+                                    <label for="present1">Present 1</label>
+                                    <input type="text" class="form-control" id="present1" name="present1" placeholder="Present1" value="<?php echo $payment_data['present1'] ?>" autocomplete="off"  onkeyup="calculateTotal(this)" >
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+
+                                <div class="form- col-md-2">
+                                    <label for="loan2">Loan 2</label>
+                                    <input type="text" class="form-control" id="loan2" name="loan2" placeholder="Loan 2"  value="<?php echo $payment_data['loan2'] ?>" autocomplete="off"  onkeyup="calculateTotal(this)">
+                                </div>
+                                <div class="form- col-md-2">
+                                    <label for="present2">Present 2</label>
+                                    <input type="text" class="form-control" id="present2" name="present2" placeholder="Present 2"  value="<?php echo $payment_data['present2'] ?>" autocomplete="off"  onkeyup="calculateTotal(this)">
+                                </div>
+                                <div class="form- col-md-2">
+                                    <label for="loandonation">Loan Donation</label>
+                                    <input type="text" class="form-control" id="loandonation" name="loandonation" placeholder="Loan donation"  value="<?php echo $payment_data['loandonation'] ?>" autocomplete="off"  onkeyup="calculateTotal(this)">
+                                </div>
+                                <div class="form- col-md-2">
+                                    <label for="extra">Extra</label>
+                                    <input type="text" class="form-control" id="extra" name="extra" placeholder="Extra" value="<?php echo $payment_data['extra'] ?>" autocomplete="off"  onkeyup="calculateTotal(this)">
                                 </div>
 
                             </div>
 
-                            <button type="submit" class="btn btn-success">Update Chit details</button>
+                            <div class="form-row">
+
+                                <div class="form- col-md-2">
+                                    <label for="total">Total</label>
+                                    <input type="text" class="form-control" id="total" name="total" placeholder="Total" value="<?php echo $payment_data['total'] ?>" >
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group" style="background-color: #e9ecef">
+                                <div class="container">
+                                    <h4>Payment</h4>
+
+                                    <div class="form-row">
+
+                                        <div class="form-group col-md-4">
+                                            <label for="method">Method</label>
+                                            <select id="method" name="method" class="form-control">
+                                                <option value="Cash">Cash</option>
+                                                <option value="cheque">Cheque</option>
+                                            </select>
+                                        </div>
+                                        <div class="form- col-md-4">
+                                            <label for="cheque_no">Cheque No</label>
+                                            <input type="text" class="form-control" id="cheque_no" name="cheque_no" placeholder="Cheque No" value="<?php echo $payment_data['cheque_no'] ?>" autocomplete="off">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-success">Update Payment</button>
                         </form>
 
 
@@ -77,9 +154,21 @@
 </div>
 
 
-
 <script type="text/javascript">
     $(document).ready(function() {
         $("#paymentMainMenu").addClass('active');
     });
+    function calculateTotal(field) {
+        if(field.value) {
+            var totalamount = Number($("#subscription").val())+Number($("#fine").val())+Number($("#umra").val())+Number($("#chit").val())
+                +Number($("#loan1").val())+Number($("#loan2").val())+Number($("#loandonation").val())+Number($("#extra").val());
+            $("#total").val(totalamount);
+        }else{
+            field.value=0 ;
+            var totalamount = Number($("#subscription").val())+Number($("#fine").val())+Number($("#umra").val())+Number($("#chit").val())
+                +Number($("#loan1").val())+Number($("#loan2").val())+Number($("#loandonation").val())+Number($("#extra").val());
+            $("#total").val(totalamount);
+        }
+    }
 </script>
+

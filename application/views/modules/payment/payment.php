@@ -52,6 +52,7 @@
                                                     <th>Present 2</th>
                                                     <th>Loan Donation</th>
                                                     <th>Extra</th>
+                                                    <th>Total</th>
                                                     <th>Method</th>
                                                     <th>Cheque No</th>
 
@@ -75,6 +76,7 @@
                                                         <td align="right"><?php echo $v['payment_info']['present2']; ?></td>
                                                         <td align="right"><?php echo $v['payment_info']['loandonation']; ?></td>
                                                         <td align="right"><?php echo $v['payment_info']['extra']; ?></td>
+                                                        <td align="right"><?php echo $v['payment_info']['total']; ?></td>
                                                         <td><?php echo $v['payment_info']['method']; ?></td>
                                                         <td><?php echo $v['payment_info']['cheque_no']; ?></td>
 
@@ -82,7 +84,7 @@
 
                                                         <td class="text-right">
                                                             <div class="btn-group">
-<!--                                                                <a type="button" class="btn btn-outline-success btn-sm" href="--><?php //echo base_url('loan/edit/'.$v['loan_info']['id']) ?><!--">Edit</a>-->
+                                                                <a type="button" class="btn btn-outline-success btn-sm" href="<?php echo base_url('payment/edit/'.$v['payment_info']['id']) ?>">Edit</a>
                                                                 <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#deleteModal<?php echo $v['payment_info']['id']; ?>">Delete</button>
                                                             </div>
 

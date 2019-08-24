@@ -124,35 +124,35 @@ class Model_calculations extends CI_Model
     // Monthly
 
 
-    public function calculateTotalPayment($type, $month){
-        $sql1 = "SELECT IFNULL(SUM($type),0) AS subpaid FROM payment WHERE MONTH(date)=?";
-        $result = $this->db->query($sql1, array($month));
+    public function calculateTotalPayment($type, $month, $year){
+        $sql1 = "SELECT IFNULL(SUM($type),0) AS subpaid FROM payment WHERE MONTH(date)=? AND YEAR(date)=?";
+        $result = $this->db->query($sql1, array($month,$year));
 
         return $result->row()->subpaid;
     }
 
-    public function calculateTotalLoan($type, $month){
+    public function calculateTotalLoan($type, $month, $year){
         if($type=='umra'){
-            $sql1 = "SELECT IFNULL(SUM(amount),0) AS subumra FROM umra WHERE MONTH(date)=?";
-            $result = $this->db->query($sql1, array($month));
+            $sql1 = "SELECT IFNULL(SUM(amount),0) AS subumra FROM umra WHERE MONTH(date)=? AND YEAR(date)=?";
+            $result = $this->db->query($sql1, array($month, $year));
             return $result->row()->subumra;
         }elseif ($type=='chit'){
-            $sql1 = "SELECT IFNULL(SUM(amount),0) AS subchit FROM chit WHERE MONTH(date)=?";
-            $result = $this->db->query($sql1, array($month));
+            $sql1 = "SELECT IFNULL(SUM(amount),0) AS subchit FROM chit WHERE MONTH(date)=? AND YEAR(date)=?";
+            $result = $this->db->query($sql1, array($month, $year));
             return $result->row()->subchit;
         }
-        $sql1 = "SELECT IFNULL(SUM(amount),0) AS subpaid FROM loan WHERE MONTH(date)=? AND type=?";
-        $result = $this->db->query($sql1, array($month,$type));
+        $sql1 = "SELECT IFNULL(SUM(amount),0) AS subpaid FROM loan WHERE MONTH(date)=? AND type=? AND YEAR(date)=?";
+        $result = $this->db->query($sql1, array($month,$type, $year));
 
 
         return $result->row()->subpaid;
 
     }
 
-    public function calculateIncomeExpense($type, $month){
+    public function calculateIncomeExpense($type, $month, $year){
 
-        $sql1 = "SELECT IFNULL(SUM(amount),0) AS subamount, description FROM incomeexpense WHERE MONTH(date)=? AND type=? GROUP BY description";
-        $result = $this->db->query($sql1, array($month,$type));
+        $sql1 = "SELECT IFNULL(SUM(amount),0) AS subamount, description FROM incomeexpense WHERE MONTH(date)=? AND type=? AND YEAR(date)=? GROUP BY description";
+        $result = $this->db->query($sql1, array($month,$type, $year));
 
         return $result->result_array();
 
@@ -160,7 +160,7 @@ class Model_calculations extends CI_Model
 
 
             // Brought forward
-    public function calculateBroughtForward($month){
+    public function calculateBroughtForward($month,$year){
                     // ====Credit====
         // opening
         $sql_opening = "SELECT IFNULL(SUM(amount),0) AS subopening FROM incomeexpense WHERE type=?";
@@ -169,8 +169,8 @@ class Model_calculations extends CI_Model
         $opening = $result_opening->row()->subopening;
 
         // Income
-        $sql_income = "SELECT IFNULL(SUM(amount),0) AS subincome FROM incomeexpense WHERE type=? AND MONTH(date)<?";
-        $result_income = $this->db->query($sql_income, array('income', $month));
+        $sql_income = "SELECT IFNULL(SUM(amount),0) AS subincome FROM incomeexpense WHERE type=? AND MONTH(date)<? AND YEAR(date)<=?";
+        $result_income = $this->db->query($sql_income, array('income', $month, $year));
 
         $income = $result_income->row()->subincome;
 
@@ -186,34 +186,34 @@ class Model_calculations extends CI_Model
                         + IFNULL(SUM(present2),0)
                         + IFNULL(SUM(loandonation),0)
                         + IFNULL(SUM(extra),0) 
-                        AS subpayment FROM payment WHERE MONTH(date)<?";
-        $result_payment = $this->db->query($sql_payment, array($month));
+                        AS subpayment FROM payment WHERE MONTH(date)<? AND YEAR(date)<=?";
+        $result_payment = $this->db->query($sql_payment, array($month, $year));
 
         $payment = $result_payment->row()->subpayment;
 
 
                             // ====Debit====
         // chit
-        $sql_chit = "SELECT IFNULL(SUM(amount),0) AS subchit FROM chit WHERE MONTH(date)<?";
-        $result_chit = $this->db->query($sql_chit, array($month));
+        $sql_chit = "SELECT IFNULL(SUM(amount),0) AS subchit FROM chit WHERE MONTH(date)<? AND YEAR(date)<=?";
+        $result_chit = $this->db->query($sql_chit, array($month, $year));
 
         $chit = $result_chit->row()->subchit;
 
         // Expense
-        $sql_expense = "SELECT IFNULL(SUM(amount),0) AS subexpense FROM incomeexpense WHERE type=? AND MONTH(date)<?";
-        $result_expense = $this->db->query($sql_expense, array('expense', $month));
+        $sql_expense = "SELECT IFNULL(SUM(amount),0) AS subexpense FROM incomeexpense WHERE type=? AND MONTH(date)<? AND YEAR(date)<=?";
+        $result_expense = $this->db->query($sql_expense, array('expense', $month, $year));
 
         $expense = $result_expense->row()->subexpense;
 
         // loan
-        $sql_loan = "SELECT IFNULL(SUM(amount),0) AS subloan FROM chit WHERE MONTH(date)<?";
-        $result_loan = $this->db->query($sql_loan, array($month));
+        $sql_loan = "SELECT IFNULL(SUM(amount),0) AS subloan FROM chit WHERE MONTH(date)<? AND YEAR(date)<=?";
+        $result_loan = $this->db->query($sql_loan, array($month, $year));
 
         $loan = $result_loan->row()->subloan;
 
         // umra
-        $sql_umra = "SELECT IFNULL(SUM(amount),0) AS subumra FROM umra WHERE MONTH(date)<?";
-        $result_umra = $this->db->query($sql_umra, array($month));
+        $sql_umra = "SELECT IFNULL(SUM(amount),0) AS subumra FROM umra WHERE MONTH(date)<? AND YEAR(date)<=?";
+        $result_umra = $this->db->query($sql_umra, array($month, $year));
 
         $umra = $result_umra->row()->subumra;
 

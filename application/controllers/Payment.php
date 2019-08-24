@@ -71,6 +71,7 @@ class Payment extends Admin_Controller {
                 'extra' => $this->input->post('extra'),
                 'method' => $this->input->post('method'),
                 'cheque_no' => $this->input->post('cheque_no'),
+                'total' => $this->input->post('total'),
 
 
 
@@ -98,43 +99,60 @@ class Payment extends Admin_Controller {
     public function edit($id = null)
     {
 
-
         if($id) {
-
-//            $this->form_validation->set_rules('membership_no', 'Membership No', 'required|is_unique[members.membership_no]');
-            $this->form_validation->set_rules('full_name', 'Full Name', 'trim|required');
+            $this->form_validation->set_rules('membership_no', 'Membership No', 'required');
+//        $this->form_validation->set_rules('full_name', 'Full Name', 'trim|required');
             $this->form_validation->set_rules('date', 'date', 'trim|required');
-            $this->form_validation->set_rules('chit_no', 'Chit Number', 'trim|required');
-            $this->form_validation->set_rules('amount', 'Amount', 'trim|required');
-
+//        $this->form_validation->set_rules('subscription', 'subscription', 'trim|required');
+//        $this->form_validation->set_rules('fine', 'Fine', 'trim|required');
+//        $this->form_validation->set_rules('umra', 'Umra', 'trim|required');
+//        $this->form_validation->set_rules('chit', 'Chit', 'trim|required');
+//        $this->form_validation->set_rules('locan1', 'Loan 1', 'trim|required');
+//        $this->form_validation->set_rules('present1', 'Present 1', 'trim|required');
+//        $this->form_validation->set_rules('loan2', 'Loan 2', 'trim|required');
+//        $this->form_validation->set_rules('present2', 'Present 2', 'trim|required');
+//        $this->form_validation->set_rules('loandonation', 'Loan Doantion', 'trim|required');
+//        $this->form_validation->set_rules('extra', 'Extra', 'trim|required');
             if ($this->form_validation->run() == TRUE) {
                 // true case
                 $data = array(
-                    'full_name' => $this->input->post('full_name'),
-                    'membership_no' => $this->input->post('membership_no'),
+                    'full_name' => explode("-",$this->input->post('membership_no'))[1],
+                    'membership_no' => explode("-",$this->input->post('membership_no'))[0],
                     'date' => $this->input->post('date'),
-                    'chit_no' => $this->input->post('chit_no'),
-                    'amount' => $this->input->post('amount'),
+                    'subscription' => $this->input->post('subscription'),
+                    'fine' => $this->input->post('fine'),
+                    'umra' => $this->input->post('umra'),
+                    'chit' => $this->input->post('chit'),
+                    'loan1' => $this->input->post('loan1'),
+                    'present1' => $this->input->post('present1'),
+                    'loan2' => $this->input->post('loan2'),
+                    'present2' => $this->input->post('present2'),
+                    'loandonation' => $this->input->post('loandonation'),
+                    'extra' => $this->input->post('extra'),
+                    'method' => $this->input->post('method'),
+                    'cheque_no' => $this->input->post('cheque_no'),
+                    'total' => $this->input->post('total'),
 
-                    );
 
-                $update = $this->model_chit->edit($data,$id);
+                );
+
+                $update = $this->model_payment->edit($data,$id);
                 if($update == true) {
                     $this->session->set_flashdata('success', 'Successfully updated');
-                    redirect('chit/', 'refresh');
+                    redirect('payment/', 'refresh');
                 }
                 else {
                     $this->session->set_flashdata('errors', 'Error occurred!!');
-                    redirect('chit/edit/'.$id, 'refresh');
+                    redirect('payment/edit/'.$id, 'refresh');
                 }
             }
             else {
                 // false case
-                $chit_data = $this->model_chit->getChitData($id);
-                $this->data['chit_data'] = $chit_data;
+                $payment_data = $this->model_payment->getPaymentData($id);
+                $this->data['payment_data'] = $payment_data;
 
-
-                $this->render_template('modules/chit/edit', $this->data);
+                $this->data['members_data'] = $this->model_members->getMemberData();
+                $this->render_template('modules/payment/edit', $this->data);
             }
         }
     }
