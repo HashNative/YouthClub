@@ -10,9 +10,10 @@
                     <a href="#">Dashboard</a>
                 </li>
                 <li class="breadcrumb-item active">Overview</li>
+                <li>/ view <a href="<?php echo base_url('reports/annual'); ?>" class="btn btn-secondary btn-sm breadcrumb-item">Annual Report</a></li>
             </ol>
 
-            <!-- Icon Cards-->
+            <!-- Icon Cards
             <div class="row">
                 <div class="col-xl-3 col-sm-6 mb-3">
                     <div class="card text-white bg-primary o-hidden h-100">
@@ -78,13 +79,40 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <!-- DataTables Example -->
+            <!-- Monthly report -->
             <div class="card mb-3">
                 <div class="card-header">
                     <i class="fas fa-table"></i>
-                    Monthly Transaction - For this month (<?php echo date('M'); ?>/<?php echo date('Y'); ?>)</div>
+                    Monthly Transaction - For this month (<a href="<?php echo base_url(); ?>"><?php echo $month; ?>/<?php echo $year; ?></a>)
+                    <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#filterModal">Filter</button>
+
+                    <div class="modal inmodal" id="filterModal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Filter Monthly report</h4>
+                                </div>
+                                <form role="form" action="<?php echo base_url('/dashboard'); ?>" method="post" id="filterForm">
+                                    <div class="confirmation-modal-body">
+                                        <div class="modal-body">
+                                            <label>Select Month to filter: </label><input type="month" class="form-control" id="month" name="month" required>
+                                        </div>
+                                        <div class="modal-footer d-flex justify-content-around">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary" name="confirm">Filter</button>
+                                        </div>
+                                    </div>
+
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
                 <div class="card-body">
                     <div id="monthly_summary" class="table-responsive">
                         <table id="monthy_report_table" class="table table-bordered table-sm table-hover" id="dataTable" width="100%" cellspacing="0">
@@ -181,7 +209,7 @@
                             <tr>
                                 <td>Loan Donation Given</td>
                                 <td>0</td>
-                                <td><?php echo $loandonation_given; ?></td>
+                                <td class="debit"><?php echo $loandonation_given; ?></td>
                             </tr>
                             <tr>
                                 <td>YFS Chit Given</td>
@@ -197,6 +225,11 @@
 
                                 </tr>
                             <?php endforeach; ?>
+                            <tr>
+                                <td>Umra Given</td>
+                                <td>0</td>
+                                <td class="debit"><?php echo $umra_given; ?></td>
+                            </tr>
 
                             </tbody>
                         </table>
@@ -209,6 +242,9 @@
                 </div>
                 <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
             </div>
+
+             
+
 
         </div>
         <!-- /.container-fluid -->

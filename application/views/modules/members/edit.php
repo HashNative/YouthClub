@@ -171,8 +171,8 @@
                                         <div class="form-group col-md-2">
                                             <label for="nominee_sex">Sex</label>
                                             <select id="nominee_sex" name="nominee_sex" class="form-control">
-                                                <option value="Male" selected>Male</option>
-                                                <option value="Female">Female</option>
+                                                <option value="Male" <?php if($members_data['nominee_sex']=='Male'){ echo 'selected'; } ?> >Male</option>
+                                                <option value="Female" <?php if($members_data['nominee_sex']=='Female'){ echo 'selected'; } ?> >Female</option>
 
                                             </select>
                                         </div>

@@ -7,11 +7,11 @@ class Model_loan extends CI_Model
 		parent::__construct();
 	}
 
-	public function getLoanData($userId = null)
+	public function getLoanData($loanId = null)
 	{
-		if($userId) {
+		if($loanId) {
 			$sql = "SELECT * FROM loan WHERE id = ?";
-			$query = $this->db->query($sql, array($userId));
+			$query = $this->db->query($sql, array($loanId));
 			return $query->row_array();
 		}
 
@@ -19,6 +19,9 @@ class Model_loan extends CI_Model
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
+
+	
+
 
     public function getDividedData($userId = null)
     {
@@ -62,13 +65,16 @@ class Model_loan extends CI_Model
 
 
 
-	public function edit($data = array(), $id = null)
+	public function edit($data = array(), $id)
 	{
 		$this->db->where('id', $id);
 		$update = $this->db->update('loan', $data);
 
 		return ($update == true) ? true : false;	
 	}
+
+     
+
 
 	public function delete($id)
 	{

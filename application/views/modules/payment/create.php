@@ -157,12 +157,12 @@
     function calculateTotal(field) {
         if(field.value) {
             var totalamount = Number($("#subscription").val())+Number($("#fine").val())+Number($("#umra").val())+Number($("#chit").val())
-                +Number($("#loan1").val())+Number($("#loan2").val())+Number($("#loandonation").val())+Number($("#extra").val());
+                +Number($("#loan1").val())+Number($("#present1").val())+Number($("#loan2").val())+Number($("#present2").val())+Number($("#loandonation").val())+Number($("#extra").val());
             $("#total").val(totalamount);
         }else{
             field.value=0 ;
             var totalamount = Number($("#subscription").val())+Number($("#fine").val())+Number($("#umra").val())+Number($("#chit").val())
-                +Number($("#loan1").val())+Number($("#loan2").val())+Number($("#loandonation").val())+Number($("#extra").val());
+                +Number($("#loan1").val())+Number($("#present1").val())+Number($("#loan2").val())+Number($("#present2").val())+Number($("#loandonation").val())+Number($("#extra").val());
             $("#total").val(totalamount);
         }
     }

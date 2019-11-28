@@ -15,7 +15,7 @@ class Payment extends Admin_Controller {
     public function index(){
 
 
-        $payment_data = $this->model_payment->getPaymentData();
+        $payment_data =$this->model_payment->getPaymentData();
 
         $result = array();
         foreach ($payment_data as $k => $v) {

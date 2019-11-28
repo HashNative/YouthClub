@@ -120,79 +120,59 @@ class Loan extends Admin_Controller {
     public function edit($id = null)
     {
 
+      
+        $this->form_validation->set_rules('membership_no', 'Membership No', 'required');
+        $this->form_validation->set_rules('loandate', 'Date', 'trim|required');
+        $this->form_validation->set_rules('loantype', 'Type', 'trim|required');
+        $this->form_validation->set_rules('loanamount', 'Amount', 'trim|required');
+//        $this->form_validation->set_rules('presentamount', 'Present', 'trim|required');
+        $this->form_validation->set_rules('duration', 'Duration', 'trim|required');
+        $this->form_validation->set_rules('witness1', 'Witness 1', 'trim|required');
+        $this->form_validation->set_rules('witness2', 'Witness 2', 'trim|required');
 
-        if($id) {
 
-//            $this->form_validation->set_rules('membership_no', 'Membership No', 'required|is_unique[members.membership_no]');
-            $this->form_validation->set_rules('full_name', 'Full Name', 'trim|required');
-            $this->form_validation->set_rules('address', 'Address', 'trim|required');
-            $this->form_validation->set_rules('NIC', 'NIC', 'trim|required');
-            $this->form_validation->set_rules('nominee_full_name', 'Nominee- Full Name', 'trim|required');
+        if ($this->form_validation->run() == TRUE) {
+            // true case
+            $data = array(
+                'full_name' => explode("-",$this->input->post('membership_no'))[1],
+                'membership_no' => explode("-",$this->input->post('membership_no'))[0],
+                'date' => $this->input->post('loandate'),
+                'type' => $this->input->post('loantype'),
+                'amount' => $this->input->post('loanamount'),
+                'present' => $this->input->post('presentamount'),
+                'duration' => $this->input->post('duration'),
+                'method' => $this->input->post('method'),
+                'cheque_no' => $this->input->post('cheque_no'),
+                'witness1' => $this->input->post('witness1'),
+                'witness2' => $this->input->post('witness2'),
+            );
 
-            if ($this->form_validation->run() == TRUE) {
-                // true case
-                $data = array(
-                    'full_name' => $this->input->post('full_name'),
-                    'membership_no' => $this->input->post('membership_no'),
-                    'address' => $this->input->post('address'),
-                    'NIC' => $this->input->post('NIC'),
-                    'contact_home' => $this->input->post('contact_home'),
-                    'contact_mobile' => $this->input->post('contact_mobile'),
-                    'dob' => $this->input->post('dob'),
-                    'email' => $this->input->post('email'),
-                    'bank' => $this->input->post('bank'),
-                    'account_no' => $this->input->post('membership_no'),
-                    'nominee_full_name' => $this->input->post('nominee_full_name'),
-                    'nominee_relationship' => $this->input->post('nominee_relationship'),
-                    'nominee_address' => $this->input->post('nominee_address'),
-                    );
+            $create = $this->model_loan->edit($data,$id);
 
-                $update = $this->model_members->edit($data,$id);
-                if($update == true) {
-                    $this->session->set_flashdata('success', 'Successfully updated');
-                    redirect('members/', 'refresh');
-                }
-                else {
-                    $this->session->set_flashdata('errors', 'Error occurred!!');
-                    redirect('members/edit/'.$id, 'refresh');
-                }
+            if($create == true) {
+                $this->session->set_flashdata('success', 'Successfully updated');
+               redirect('loan/', 'refresh');
             }
             else {
-                // false case
-                $member_data = $this->model_members->getMemberData($id);
-                $this->data['members_data'] = $member_data;
-
-
-                $this->render_template('modules/members/edit', $this->data);
+                $this->session->set_flashdata('errors', 'Error occurred!!');
+                redirect('loan/edit', 'refresh');
             }
         }
-    }
-
-    public function delete($id)
-    {
+        else {
 
 
-        if($id) {
-            if($this->input->post('confirm')) {
+            $this->data['loan_data'] = $this->model_loan->getLoanData($id);
+            $this->data['members_data'] = $this->model_members->getMemberData();
 
-
-                $delete = $this->model_loan->delete($id);
-                if($delete == true) {
-                    $this->session->set_flashdata('success', 'Successfully removed');
-                    redirect('loan/', 'refresh');
-                }
-                else {
-                    $this->session->set_flashdata('error', 'Error occurred!!');
-                    redirect('loan/delete/'.$id, 'refresh');
-                }
-
-            }
-            else {
-                $this->data['id'] = $id;
-                $this->render_template('modules/loan/delete', $this->data);
-            }
+            $this->render_template('modules/loan/edit', $this->data);
         }
+
     }
+
+
+
+
+
 
 
 }

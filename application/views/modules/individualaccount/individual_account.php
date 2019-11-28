@@ -14,11 +14,11 @@
                                 <div class="col-12">
 
                                     <div class="row">
-                                        <div class="col-md-3" align="right">
+                                        <div class="col-md-3" align="center">
                                             <img src="<?php echo base_url('assets/img/yfslogo.png'); ?>" width="110"
                                                  height="120">
                                         </div>
-                                        <div class="col-md-9 callout callout-info" align="left">
+                                        <div class="col-md-9 callout callout-info" align="center">
                                             <h3>YOUNG FLOWERS SOCIAL SERVICE DEVELOPMENT SOCIETY</h3>
                                             <h4>AMPARAI ROAD, SAMMANTHURAI </h4>
                                             <h3>Regd.No:STR/DS/SS/85/2005</h3>
@@ -40,7 +40,7 @@
                             <div class="row invoice-info">
                                 <div class="col-12">
                                     <h5>
-                                    <textarea cols="110" placeholder="Invitation" style="border: none" >The monthly meeting of our society will be held on Date at 10 AM at the residence of the member XYZ</textarea>
+                                    <textarea cols="110"  id="text" name="text" placeholder="Invitation" style="border: none" >The monthly meeting of our society will be held on 28-01-2020 at 8 PM at the residence of the member XYZ</textarea>
                                     </h5>
                                 </div>
                                 <!-- /.col -->
@@ -98,6 +98,7 @@
                                             <td align="right" class="amounts"><?php echo $loandonation_due; ?></td>
                                         </tr>
 
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -107,7 +108,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h5>
-                                        <textarea cols="110" placeholder="Invitation" style="border: none" >Note:</textarea>
+                                        <textarea id="note" name="note"  cols="110" placeholder="Invitation" style="border: none" >Note:</textarea>
                                     </h5>
                                 </div>
                             </div>
@@ -156,10 +157,13 @@
 
 <script>
     function printDiv(divName){
+        var text =document.getElementById("text").value; 
+        var note = document.getElementById("note").value;
         var printContents = document.getElementById(divName).innerHTML;
         var originalContents = document.body.innerHTML;
         document.body.innerHTML = printContents;
-
+        document.getElementById("text").value=text;
+        document.getElementById("note").value=note;
         window.print();
        document.body.innerHTML = originalContents;
     }

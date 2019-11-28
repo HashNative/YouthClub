@@ -23,12 +23,12 @@ class Model_umra extends CI_Model
     public function getUmraPaymentData($userId = null)
     {
         if($userId) {
-            $sql = "SELECT * FROM payment WHERE id = ?";
+            $sql = "SELECT * FROM payment WHERE id = ? AND umra>0";
             $query = $this->db->query($sql, array($userId));
             return $query->row_array();
         }
 
-        $sql = "SELECT * FROM payment ORDER BY id DESC";
+        $sql = "SELECT * FROM payment WHERE umra>0 ORDER BY id DESC";
         $query = $this->db->query($sql);
         return $query->result_array();
     }
@@ -43,9 +43,9 @@ class Model_umra extends CI_Model
 
         //Join function with members-umraopening, payment-umra, umra-amount
 
-        $sql = "SELECT  m.membership_no AS membership_no, m.full_name AS full_name, m.umra_opening AS umra_opening
-      , (SELECT SUM(p.umra) FROM payment p WHERE p.membership_no = m.membership_no) as paidumra
-      , (SELECT SUM(u.amount) FROM umra u WHERE u.membership_no = m.membership_no) as umraloan
+        $sql = "SELECT  m.membership_no AS membership_no, m.full_name AS full_name, IFNULL(m.umra_opening,0) AS umra_opening
+      , (SELECT IFNULL(SUM(p.umra),0) FROM payment p WHERE p.membership_no = m.membership_no) as paidumra
+      , (SELECT IFNULL(SUM(u.amount),0) FROM umra u WHERE u.membership_no = m.membership_no) as umraloan
         FROM members m ORDER BY m.membership_no ASC";
 
 

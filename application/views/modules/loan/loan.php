@@ -91,7 +91,7 @@
                                                         <td class="text-right">
                                                             <div class="btn-group">
                                                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#viewModal<?php echo $v['loan_info']['id']; ?>">View</button>
-                                                                <!-- <a type="button" class="btn btn-outline-success btn-sm" href="--><?php //echo base_url('loan/edit/'.$v['loan_info']['id']) ?><!--">Edit</a>-->
+                                                                <a type="button" class="btn btn-outline-success btn-sm" href="<?php echo base_url('loan/edit/'.$v['loan_info']['id']) ?>">Edit</a>
                                                                 <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#deleteModal<?php echo $v['loan_info']['id']; ?>">Delete</button>
                                                             </div>
 
